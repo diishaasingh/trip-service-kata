@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
@@ -66,5 +66,22 @@ class UserTest {
         List<Trip> trips = user.trips();
 
         assertThrows(UnsupportedOperationException.class, () -> trips.add(new Trip()));
+    }
+
+    @Test
+    void shouldReturnTrueWhenLoggedUserIsFriend(){
+        User user = new User();
+        User loggedUser = new User();
+        user.addFriend(loggedUser);
+
+        assertTrue(user.isFriendsWith(loggedUser));
+    }
+
+    @Test
+    void shouldReturnFalseWhenLoggedUserIsNotFriend(){
+        User user = new User();
+        User loggedUser = new User();
+
+        assertFalse(user.isFriendsWith(loggedUser));
     }
 }

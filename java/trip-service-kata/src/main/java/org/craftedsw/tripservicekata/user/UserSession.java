@@ -1,23 +1,20 @@
 package org.craftedsw.tripservicekata.user;
 
+import org.craftedsw.tripservicekata.exception.CollaboratorCallException;
+
 public class UserSession {
 
-	private static final UserSession userSession = new UserSession();
-	private User loggedUser;
-	
-	private UserSession() {
-	}
-	
-	public static UserSession getInstance() {
-		return userSession;
-	}
+    private static final UserSession userSession = new UserSession();
 
-	public User getLoggedUser() {
-		return loggedUser;
-	}
+    private UserSession() {
+    }
 
-	public void setLoggedUser(User user) {
-		this.loggedUser = user;
-	}
+    public static UserSession getInstance() {
+        return userSession;
+    }
 
+    public User getLoggedUser() {
+        throw new CollaboratorCallException(
+                "UserSession.getLoggedUser() should not be called in an unit test");
+    }
 }

@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 class TripServiceTest {
 
     @Test
-    void shouldThrowExceptionWhenUserNotLoggedIn(){
+    void shouldThrowExceptionWhenUserNotLoggedIn(){ //test name should not be technical
         UserSession userSession = mock(UserSession.class);
         TripRepository tripRepository = mock(TripRepository.class);
         TripService tripService = new TripService(userSession, tripRepository);
@@ -53,6 +53,7 @@ class TripServiceTest {
         tripService.getTripsByUser(anotherUser);
 
         verify(tripRepository, times(0)).findTripsByUser(anotherUser);
+        //brittle
     }
 
     @Test
